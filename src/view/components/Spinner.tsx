@@ -4,7 +4,7 @@ interface SpinnerProps {
     className?: string;
 }
 
-const Spiner = ({ className }: SpinnerProps) => {
+const Spinner = ({ className }: SpinnerProps) => {
     return (
         <>
             <svg
@@ -30,4 +30,4 @@ const Spiner = ({ className }: SpinnerProps) => {
     );
 };
 
-export default Spiner;
+export default Spinner;

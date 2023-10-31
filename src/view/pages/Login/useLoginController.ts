@@ -1,11 +1,13 @@
 import { z } from "zod";
-import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { SignInParams } from "../../../app/services/authService/signin";
 
 import { useMutation } from "@tanstack/react-query";
-import toast from "react-hot-toast";
 import { authService } from "../../../app/services/authService";
-import { SignInParams } from "../../../app/services/authService/signin";
+import { useAuth } from "../../../app/hooks/useAuth";
+import { useForm } from "react-hook-form";
+
+import toast from "react-hot-toast";
 
 const schema = z.object({
     email: z
@@ -35,11 +37,13 @@ const useLoginController = () => {
         },
     });
 
+    const { signin } = useAuth();
+
     const handleSubmit = HookFormSubmit(async (data) => {
         try {
             const { acessToken } = await mutateAsync(data);
-            toast.success("Deu tudo certo");
-            console.log({ acessToken });
+
+            signin(acessToken);
         } catch {
             toast.error("Ocorreu um erro ao criar a conta");
         }
