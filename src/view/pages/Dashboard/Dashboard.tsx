@@ -3,7 +3,10 @@ import Logo from "../../components/Logo";
 import UserMenu from "../../components/UserMenu";
 import Accounts from "./components/Accounts/Accounts";
 import { DashBoardProvider } from "./components/DashBoardContext/DashBoardContext";
+import Fab from "./components/Fab/Fab";
 import Transactions from "./components/Transactions/Transactions";
+import NewTransactionModal from "./modals/NewTransactionModal/NewTransactionModal";
+import NewAccountModal from "./modals/newAccountModal/NewAccountModal";
 
 const Dashboard = () => {
     return (
@@ -23,6 +26,10 @@ const Dashboard = () => {
                         <Transactions />
                     </div>
                 </main>
+
+                <Fab />
+                <NewAccountModal />
+                <NewTransactionModal />
             </div>
         </DashBoardProvider>
     );

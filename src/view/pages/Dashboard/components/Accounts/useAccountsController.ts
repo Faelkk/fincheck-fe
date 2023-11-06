@@ -4,7 +4,9 @@ import { useDashBoard } from "../DashBoardContext/useDashBoard";
 
 const useAccountsController = () => {
     const windowWidth = useWindowWidth();
-    const { areValueVisible, toggleValuesVisiblity } = useDashBoard();
+
+    const { areValueVisible, openNewAccountModal, toggleValuesVisiblity } =
+        useDashBoard();
 
     const [sliderState, setSliderState] = useState({
         isBeginning: true,
@@ -15,10 +17,11 @@ const useAccountsController = () => {
         areValueVisible,
         windowWidth,
         sliderState,
-        setSliderState,
-        toggleValuesVisiblity,
         isLoading: false,
         accounts: [],
+        setSliderState,
+        toggleValuesVisiblity,
+        openNewAccountModal,
     };
 };
 
