@@ -6,7 +6,8 @@ import { DashBoardProvider } from "./components/DashBoardContext/DashBoardContex
 import Fab from "./components/Fab/Fab";
 import Transactions from "./components/Transactions/Transactions";
 import NewTransactionModal from "./modals/NewTransactionModal/NewTransactionModal";
-import NewAccountModal from "./modals/newAccountModal/NewAccountModal";
+import NewAccountModal from "./modals/NewAccountModal/NewAccountModal";
+import EditAccountModal from "./modals/EditAccountModal/EditAccountModal";
 
 const Dashboard = () => {
     return (
@@ -30,6 +31,7 @@ const Dashboard = () => {
                 <Fab />
                 <NewAccountModal />
                 <NewTransactionModal />
+                <EditAccountModal />
             </div>
         </DashBoardProvider>
     );

@@ -5,7 +5,7 @@ import Input from "../../../../components/Input";
 import InputCurrency from "../../../../components/InputCurrency";
 import Modal from "../../../../components/Modal";
 import Select from "../../../../components/Select";
-import useNewAccountModalController from "./useNewAccountModalController";
+import useNewAccountModalController from "../NewAccountModal/useNewAccountModalController";
 
 const NewAccountModal = () => {
     const {

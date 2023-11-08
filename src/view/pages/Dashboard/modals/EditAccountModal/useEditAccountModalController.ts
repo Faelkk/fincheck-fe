@@ -20,8 +20,8 @@ type ExtendedFormData = FormData & {
     initialBalance: number;
 };
 
-const useNewAccountModalController = () => {
-    const { isNewAccountModalOpen, closeNewAccountModal } = useDashBoard();
+const useEditAccountModalController = () => {
+    const { isEditAccountModalOpen, closeEditAccountModal } = useDashBoard();
 
     const {
         register,
@@ -55,7 +55,7 @@ const useNewAccountModalController = () => {
 
             queryClient.invalidateQueries({ queryKey: ["bankAccounts"] });
             toast.success("Conta foi cadastrada com sucesso!");
-            closeNewAccountModal();
+            closeEditAccountModal();
             reset();
         } catch {
             toast.error("Erro ao cadastrar a conta!");
@@ -63,14 +63,14 @@ const useNewAccountModalController = () => {
     });
 
     return {
-        isNewAccountModalOpen,
-        closeNewAccountModal,
-        register,
+        isEditAccountModalOpen,
         errors,
-        handleSubmit,
         control,
         isPending,
+        closeEditAccountModal,
+        register,
+        handleSubmit,
     };
 };
 
-export default useNewAccountModalController;
+export default useEditAccountModalController;

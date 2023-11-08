@@ -5,24 +5,24 @@ import Input from "../../../../components/Input";
 import InputCurrency from "../../../../components/InputCurrency";
 import Modal from "../../../../components/Modal";
 import Select from "../../../../components/Select";
-import useNewAccountModalController from "./useNewAccountModalController";
+import useEditAccountModalController from "./useEditAccountModalController";
 
-const NewAccountModal = () => {
+const EditAccountModal = () => {
     const {
-        isNewAccountModalOpen,
-        closeNewAccountModal,
-        register,
-        handleSubmit,
+        isEditAccountModalOpen,
         errors,
         control,
         isPending,
-    } = useNewAccountModalController();
+        closeEditAccountModal,
+        register,
+        handleSubmit,
+    } = useEditAccountModalController();
 
     return (
         <Modal
             title="Nova conta"
-            open={isNewAccountModalOpen}
-            onClose={closeNewAccountModal}
+            open={isEditAccountModalOpen}
+            onClose={closeEditAccountModal}
         >
             <form onSubmit={handleSubmit}>
                 <div className="">
@@ -109,4 +109,4 @@ const NewAccountModal = () => {
     );
 };
 
-export default NewAccountModal;
+export default EditAccountModal;

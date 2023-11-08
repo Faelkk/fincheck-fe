@@ -13,6 +13,7 @@ import SliderNavigation from "./SliderNavigation";
 
 const Accounts = () => {
     const {
+        currentBalance,
         accounts,
         isLoading,
         areValueVisible,
@@ -42,10 +43,10 @@ const Accounts = () => {
                             <strong
                                 className={cn(
                                     "text-2xl tracking-[-1px] text-white",
-                                    !areValueVisible && "blur-md"
+                                    !areValueVisible && "blur-sm"
                                 )}
                             >
-                                {formatCurrency(1000.0)}
+                                {formatCurrency(currentBalance)}
                             </strong>
                             <button
                                 className="w-8 h-8 flex items-center justify-center"
@@ -113,32 +114,11 @@ const Accounts = () => {
                                             />
                                         </div>
 
-                                        <SwiperSlide>
-                                            <AccountCard
-                                                balance={1000.23}
-                                                color="#7950F2"
-                                                name="Nubank"
-                                                type="INVESTMENT"
-                                            />
-                                        </SwiperSlide>
-
-                                        <SwiperSlide>
-                                            <AccountCard
-                                                balance={1000.23}
-                                                color="#7950F2"
-                                                name="Carteira"
-                                                type="CASH"
-                                            />
-                                        </SwiperSlide>
-
-                                        <SwiperSlide>
-                                            <AccountCard
-                                                balance={1000.23}
-                                                color="#7950F2"
-                                                name="Carteira"
-                                                type="CASH"
-                                            />
-                                        </SwiperSlide>
+                                        {accounts.map((account) => (
+                                            <SwiperSlide>
+                                                <AccountCard data={account} />
+                                            </SwiperSlide>
+                                        ))}
                                     </Swiper>
                                 </div>
                             </>

@@ -1,15 +1,20 @@
 import { ReactNode, createContext, useCallback, useState } from "react";
+import { BankAccount } from "../../../../../app/Entities/BankAccount";
 
 interface DashBoardContextValue {
     newTransactionType: "INCOME" | "EXPENSE" | null;
     isNewTransactionModalOpen: boolean;
     areValueVisible: boolean;
     isNewAccountModalOpen: boolean;
+    isEditAccountModalOpen: boolean;
+    accountBeingEdited: BankAccount | null;
     openNewAccountModal: () => void;
     closeNewAccountModal: () => void;
     openNewTransactionModal: (type: "INCOME" | "EXPENSE") => void;
     closeNewTransactionModal: () => void;
     toggleValuesVisiblity: () => void;
+    closeEditAccountModal: () => void;
+    openEditAccountModal: (bankAccount: BankAccount) => void;
 }
 
 export const DashBoardContext = createContext({} as DashBoardContextValue);
@@ -22,6 +27,9 @@ export function DashBoardProvider({ children }: { children: ReactNode }) {
     const [newTransactionType, setNewTransactionType] = useState<
         "INCOME" | "EXPENSE" | null
     >(null);
+    const [isEditAccountModalOpen, setIsEditAccountModalOpen] = useState(false);
+    const [accountBeingEdited, setIsAccountBeingEdited] =
+        useState<BankAccount | null>(null);
 
     const toggleValuesVisiblity = useCallback(() => {
         setAreValueVisible((prevState) => !prevState);
@@ -48,9 +56,21 @@ export function DashBoardProvider({ children }: { children: ReactNode }) {
         setNewTransactionType(null);
     }, []);
 
+    const openEditAccountModal = useCallback((bankAccount: BankAccount) => {
+        setIsAccountBeingEdited(bankAccount);
+        setIsEditAccountModalOpen(true);
+    }, []);
+
+    const closeEditAccountModal = useCallback(() => {
+        setIsEditAccountModalOpen(false);
+        setIsAccountBeingEdited(null);
+    }, []);
+
     return (
         <DashBoardContext.Provider
             value={{
+                isEditAccountModalOpen,
+                accountBeingEdited,
                 newTransactionType,
                 isNewTransactionModalOpen,
                 areValueVisible,
@@ -60,6 +80,8 @@ export function DashBoardProvider({ children }: { children: ReactNode }) {
                 closeNewAccountModal,
                 openNewTransactionModal,
                 closeNewTransactionModal,
+                closeEditAccountModal,
+                openEditAccountModal,
             }}
         >
             {children}
