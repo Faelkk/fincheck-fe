@@ -1,11 +1,6 @@
 import { ChevronDownIcon, CrossCircledIcon } from "@radix-ui/react-icons";
 import { cn } from "../../app/utils/cn";
-import {
-    DropdownContent,
-    DropdownItem,
-    DropdownMenu,
-    DropdownTrigger,
-} from "./DropdownMenu";
+import { DropdownMenu } from "./DropdownMenu";
 import { ColorIcon } from "./icons/ColorIcon";
 import { useState } from "react";
 
@@ -59,8 +54,8 @@ const ColorDropdownInput = ({
 
     return (
         <div>
-            <DropdownMenu>
-                <DropdownTrigger className="w-full">
+            <DropdownMenu.Root>
+                <DropdownMenu.Trigger className="w-full">
                     <button
                         className={cn(
                             "bg-white w-full rounded-lg border border-gray-500 px-3 h-[52px] text-gray-700 focus:border-gray-800 transition-all outline-none text-left relative",
@@ -79,19 +74,19 @@ const ColorDropdownInput = ({
                             )}
                         </div>
                     </button>
-                </DropdownTrigger>
+                </DropdownMenu.Trigger>
 
-                <DropdownContent className="grid grid-cols-4">
+                <DropdownMenu.Content className="grid grid-cols-4">
                     {colors.map((color) => (
-                        <DropdownItem
+                        <DropdownMenu.Item
                             key={color.color}
                             onSelect={() => handleSelect(color)}
                         >
                             <ColorIcon color={color.color} bg={color.bg} />
-                        </DropdownItem>
+                        </DropdownMenu.Item>
                     ))}
-                </DropdownContent>
-            </DropdownMenu>
+                </DropdownMenu.Content>
+            </DropdownMenu.Root>
 
             {error && (
                 <div className="flex gap-2 items-center mt-2 text-red-900">

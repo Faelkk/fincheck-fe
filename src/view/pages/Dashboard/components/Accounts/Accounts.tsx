@@ -115,7 +115,7 @@ const Accounts = () => {
                                         </div>
 
                                         {accounts.map((account) => (
-                                            <SwiperSlide>
+                                            <SwiperSlide key={account.id}>
                                                 <AccountCard data={account} />
                                             </SwiperSlide>
                                         ))}

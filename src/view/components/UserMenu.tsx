@@ -1,34 +1,29 @@
 import { ExitIcon } from "@radix-ui/react-icons";
 import { useAuth } from "../../app/hooks/useAuth";
-import {
-    DropdownTrigger,
-    DropdownContent,
-    DropdownItem,
-    DropdownMenu,
-} from "./DropdownMenu";
+import { DropdownMenu } from "./DropdownMenu";
 
 const UserMenu = () => {
     const { signout } = useAuth();
     return (
-        <DropdownMenu>
-            <DropdownTrigger>
+        <DropdownMenu.Root>
+            <DropdownMenu.Trigger>
                 <div className="bg-teal-50  rounded-full w-12 h-12 flex items-center justify-center border  border-teal-100">
                     <span className="text-sm tracking-[0.5px] text-teal-900">
                         RA
                     </span>
                 </div>
-            </DropdownTrigger>
+            </DropdownMenu.Trigger>
 
-            <DropdownContent className="w-32">
-                <DropdownItem
-                    clasName="flex items-center justify-between"
+            <DropdownMenu.Content className="w-32">
+                <DropdownMenu.Item
+                    className="flex items-center justify-between"
                     onSelect={signout}
                 >
                     Sair
                     <ExitIcon className="w-6 h-6" />
-                </DropdownItem>
-            </DropdownContent>
-        </DropdownMenu>
+                </DropdownMenu.Item>
+            </DropdownMenu.Content>
+        </DropdownMenu.Root>
     );
 };
 

@@ -6,23 +6,48 @@ import InputCurrency from "../../../../components/InputCurrency";
 import Modal from "../../../../components/Modal";
 import Select from "../../../../components/Select";
 import useEditAccountModalController from "./useEditAccountModalController";
+import { TrashIcon } from "../../../../components/icons/TrashIcon";
+import ConfirmDeleteModal from "../../../../components/ConfirmDeleteModal";
 
 const EditAccountModal = () => {
     const {
+        isDeleteModalOpen,
         isEditAccountModalOpen,
         errors,
         control,
-        isPending,
+        isLoading,
+        isLoadingDelete,
         closeEditAccountModal,
         register,
         handleSubmit,
+        handleCloseDeleteModal,
+        handleOpenDeleteModal,
+        handleDeleteAccount,
     } = useEditAccountModalController();
+
+    if (isDeleteModalOpen) {
+        return (
+            <ConfirmDeleteModal
+                isLoading={isLoadingDelete}
+                onConfirm={handleDeleteAccount}
+                title="Tem certeza que deseja excluir essa conta?"
+                onClose={handleCloseDeleteModal}
+                description=" Ao excluir a conta, tambem serão excluidos todos os
+                registros de receitas e despesas relacionados"
+            />
+        );
+    }
 
     return (
         <Modal
-            title="Nova conta"
+            title="Editar conta"
             open={isEditAccountModalOpen}
             onClose={closeEditAccountModal}
+            rightAction={
+                <button onClick={handleOpenDeleteModal}>
+                    <TrashIcon className="text-red-900 w-6 h-6" />
+                </button>
+            }
         >
             <form onSubmit={handleSubmit}>
                 <div className="">
@@ -100,9 +125,9 @@ const EditAccountModal = () => {
                 <Button
                     type="submit"
                     className="w-full mt-6"
-                    isLoading={isPending}
+                    isLoading={isLoading}
                 >
-                    Criar
+                    Salvar
                 </Button>
             </form>
         </Modal>

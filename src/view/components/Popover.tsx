@@ -1,34 +1,20 @@
 import * as RdxPopover from "@radix-ui/react-popover";
-import { ReactNode } from "react";
 import { cn } from "../../app/utils/cn";
 
-export const PopoverRoot = ({ children }: { children: ReactNode }) => {
+function PopoverRoot({ children }: { children: React.ReactNode }) {
     return <RdxPopover.Root>{children}</RdxPopover.Root>;
-};
+}
 
-export const PopoverTrigger = ({
-    children,
-    className,
-}: {
-    children: ReactNode;
-    className?: string;
-}) => {
-    return (
-        <RdxPopover.Trigger className={cn("outline-none w-full", className)}>
-            {children}
-        </RdxPopover.Trigger>
-    );
-};
+function PopoverTrigger({ children }: { children: React.ReactNode }) {
+    return <RdxPopover.Trigger asChild>{children}</RdxPopover.Trigger>;
+}
 
 interface PopoverContentProps {
-    children: ReactNode;
+    children: React.ReactNode;
     className?: string;
 }
 
-export const PopoverContent = ({
-    children,
-    className,
-}: PopoverContentProps) => {
+function PopoverContent({ children, className }: PopoverContentProps) {
     return (
         <RdxPopover.Portal>
             <RdxPopover.Content
@@ -43,4 +29,10 @@ export const PopoverContent = ({
             </RdxPopover.Content>
         </RdxPopover.Portal>
     );
+}
+
+export const Popover = {
+    Root: PopoverRoot,
+    Trigger: PopoverTrigger,
+    Content: PopoverContent,
 };
