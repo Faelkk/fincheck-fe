@@ -1,36 +1,26 @@
 import { ChevronLeftIcon, ChevronRightIcon } from "@radix-ui/react-icons";
 import Modal from "../../../../../components/Modal";
 import Button from "../../../../../components/Button";
-import { useFiltersModal } from "./useFiltersModal";
 import { cn } from "../../../../../../app/utils/cn";
+import { useFiltersModalController } from "./useFiltersModaControllerl";
 
 interface FiltersModalProps {
     open: boolean;
     onCLose: () => void;
+    onApplyFilters: (filters: {
+        bankAccountId: string | undefined;
+        year: number;
+    }) => void;
 }
 
-const mockedAccounts = [
-    {
-        id: "123",
-        name: "Nubank",
-    },
-    {
-        id: "456",
-        name: "Inter",
-    },
-    {
-        id: "789",
-        name: "XP investimentos",
-    },
-];
-
-const FiltersModal = ({ open, onCLose }: FiltersModalProps) => {
+const FiltersModal = ({ open, onCLose, onApplyFilters }: FiltersModalProps) => {
     const {
+        accounts,
         selectedBankAccountId,
         selectedYear,
         handleSelectedBankAccout,
         handleChangeYear,
-    } = useFiltersModal();
+    } = useFiltersModalController();
 
     return (
         <Modal open={open} onClose={onCLose} title="Filtros">
@@ -38,7 +28,7 @@ const FiltersModal = ({ open, onCLose }: FiltersModalProps) => {
                 Conta
             </span>
             <div className="space-y-2 mt-2">
-                {mockedAccounts.map((account) => (
+                {accounts.map((account) => (
                     <button
                         key={account.id}
                         onClick={() => handleSelectedBankAccout(account.id)}
@@ -80,7 +70,18 @@ const FiltersModal = ({ open, onCLose }: FiltersModalProps) => {
                 </div>
             </div>
 
-            <Button className="w-full mt-10"> Aplicar filtros</Button>
+            <Button
+                className="w-full mt-10"
+                onClick={() =>
+                    onApplyFilters({
+                        bankAccountId: selectedBankAccountId,
+                        year: selectedYear,
+                    })
+                }
+            >
+                {" "}
+                Aplicar filtros
+            </Button>
         </Modal>
     );
 };

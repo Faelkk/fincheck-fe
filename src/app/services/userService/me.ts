@@ -1,14 +1,9 @@
-import { sleep } from "../../utils/sleep";
+import { User } from "../../Entities/user";
+
 import { httpClient } from "../httpClient";
 
-interface MeResponse {
-    name: string;
-    email: string;
-}
-
 export async function me() {
-    await sleep(500);
-    const { data } = await httpClient.get<MeResponse>("/users/me");
+    const { data } = await httpClient.get<User>("/users/me");
 
     return data;
 }
