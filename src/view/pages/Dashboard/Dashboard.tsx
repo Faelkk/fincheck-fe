@@ -9,8 +9,8 @@ import {
 import Fab from "./components/Fab/Fab";
 import Transactions from "./components/Transactions/Transactions";
 import NewTransactionModal from "./modals/NewTransactionModal/NewTransactionModal";
-import NewAccountModal from "./modals/NewAccountModal/NewAccountModal";
 import EditAccountModal from "./modals/EditAccountModal/EditAccountModal";
+import NewAccountModal from "./modals/newAccountModal/NewAccountModal";
 
 const Dashboard = () => {
     return (
