@@ -1,5 +1,7 @@
 ## Fincheck - fe
 
+## Descrição
+
 O Fincheck - fe é uma aplicação front-end desenvolvida como parte do curso JStack. Essa aplicação tem como objetivo facilitar a gestão financeira dos usuários, integrando-se à API Fincheck. Com o Fincheck - fe, cada usuário pode aprimorar o controle sobre suas finanças, permitindo o cadastro de gastos, despesas e receitas.
 
 ## Recursos Principais
